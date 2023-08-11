@@ -11,5 +11,5 @@ fi
 echo '🏗️👷 Styling and testing your project before committing'
 
 
-# npm lint:fix
-# npm format
+npm run lint:fix
+npm run format
