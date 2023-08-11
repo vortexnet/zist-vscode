@@ -12,4 +12,4 @@ echo '🏗️👷 Styling and testing your project before committing'
 
 
 # npm lint:fix
-npm format
+# npm format
