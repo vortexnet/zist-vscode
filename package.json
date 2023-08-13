@@ -56,7 +56,19 @@
         "command": "zist-vscode.authenticate",
         "title": "Authenticate",
         "category": "Zist"
+      },
+      {
+        "command": "zist-vscode.fullscreen",
+        "title": "Toggle Fullscreen",
+        "category": "Zist"
+      },
+      {
+        "command": "zist-vscode.sidebar-accordian",
+        "title": "Accordian",
+        "category": "Zist",
+        "icon": "$(screen-full)"
       }
+
     ]
   },
   "scripts": {

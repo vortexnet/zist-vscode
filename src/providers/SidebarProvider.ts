@@ -1,11 +1,10 @@
-import * as vscode from "vscode";
-import { getNonce } from "../utils/getNonce";
-import { apiBaseUrl, constKeys, constType } from "../common/constants";
-import { UserManager } from "../GlobalStateManager";
+import * as vscode from 'vscode';
+import { getNonce } from '../utils/getNonce';
+import { apiBaseUrl, constKeys, constType } from '../common/constants';
+import { UserManager } from '../GlobalStateManager';
 
 export class SidebarProvider implements vscode.WebviewViewProvider {
-
-    public static readonly viewType = 'zist-vscode.sidebar'
+  public static readonly viewType = 'zist-vscode.sidebar';
   _view?: vscode.WebviewView;
   _doc?: vscode.TextDocument;
 
@@ -23,7 +22,7 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
 
     webviewView.webview.html = this._getHtmlForWebview(webviewView.webview);
 
-    webviewView.webview.onDidReceiveMessage(async (data) => {
+    webviewView.webview.onDidReceiveMessage(async data => {
       switch (data.type) {
         case constKeys.onAuthenticate: {
           webviewView.webview.postMessage({
@@ -55,7 +54,6 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
           vscode.window.showErrorMessage(data.value);
           break;
         }
-
       }
     });
   }
@@ -65,19 +63,11 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
   }
 
   private _getHtmlForWebview(webview: vscode.Webview) {
-    const styleResetUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, "media", "reset.css")
-    );
-    const styleVSCodeUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, "media", "vscode.css")
-    );
+    const styleResetUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', 'reset.css'));
+    const styleVSCodeUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', 'vscode.css'));
 
-    const scriptUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, "out", "compiled/sidebar.js")
-    );
-    const styleMainUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, "out", "compiled/sidebar.css")
-    );
+    const scriptUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'out', 'compiled/sidebar.js'));
+    const styleMainUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'out', 'compiled/sidebar.css'));
 
     // Use a nonce to only allow a specific script to be run.
     const nonce = getNonce();
