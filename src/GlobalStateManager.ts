@@ -1,6 +1,6 @@
-import * as vscode from "vscode";
+import * as vscode from 'vscode';
 
-const KEY = "token";
+const KEY = 'token';
 
 export class UserManager {
   static globalState: vscode.Memento;
