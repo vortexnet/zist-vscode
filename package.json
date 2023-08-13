@@ -12,11 +12,50 @@
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "zist-vscode-activitybar",
+          "title": "Zist-vscode",
+          "icon": "media/snippet.svg"
+        }
+      ]
+    },
+    "views": {
+      "zist-vscode-activitybar": [
+        {
+          "type": "webview",
+          "id": "zist-vscode.sidebar",
+          "name": "Zist",
+          "icon": "media/snippet.svg",
+          "contextualTitle": "Zist"
+        },
+        {
+          "type": "webview",
+          "id": "zist-vscode.sidebar-accordian",
+          "name": "Zist-Snippets"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "zist-vscode.sidebar-accordian",
+          "group": "navigation",
+          "when": "view == zist-vscode.sidebar-accordian"
+        }
+      ]
+    },
     "commands": [
       {
         "command": "zist-vscode.helloWorld",
         "title": "Hello World",
-        "category": "Zest"
+        "category": "Zist"
+      },
+      {
+        "command": "zist-vscode.authenticate",
+        "title": "Authenticate",
+        "category": "Zist"
       }
     ]
   },
@@ -48,6 +87,7 @@
     "@typescript-eslint/parser": "^4.9.0",
     "concurrently": "^5.3.0",
     "eslint": "^7.15.0",
+    "eslint-plugin-prettier": "^5.0.0",
     "glob": "^7.1.6",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.3",
