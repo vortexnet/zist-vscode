@@ -7,7 +7,6 @@ import { AboutZistProvider } from './providers/AboutZistProvider';
 import { UserManager } from './GlobalStateManager';
 
 export function activate(context: vscode.ExtensionContext) {
-
   // create global context
   UserManager.globalState = context.globalState;
   // register providers
