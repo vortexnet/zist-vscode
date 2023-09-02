@@ -1,4 +1,4 @@
-import App from "../components/Sidebar.svelte";
+import App from "../components/ShowZist.svelte";
 
 const app = new App({
   target: document.body,
