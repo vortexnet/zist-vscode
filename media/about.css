@@ -1,0 +1,47 @@
+/* about.css */
+/* Styling for the entire about section */
+.about-section {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--vscode-editor-background);
+    padding: 0 var(--container-paddding);
+    border-radius: 8px;
+    box-shadow: var(--vscode-widget-shadow);
+  }
+  
+  /* Styling for the icon */
+  .icon {
+    flex: 0 0 auto;
+    margin-right: 20px;
+  }
+  
+  /* Styling for the text */
+  .text {
+    flex: 1 1 auto;
+    font-family: 'Roboto', sans-serif;
+    color: #ece5e5;
+    color: var(--vscode-foreground);
+    font-size: var(--vscode-font-size);
+    font-weight: var(--vscode-font-weight);
+    font-family: var(--vscode-font-family);
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #ece5e5;
+  }
+  
+  /* Style the icon image (replace 'your-icon.png' with your actual icon path) */
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+  

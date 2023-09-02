@@ -65,6 +65,7 @@ export class AboutZistProvider implements vscode.WebviewViewProvider {
   private _getHtmlForWebview(webview: vscode.Webview) {
     const styleResetUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', 'reset.css'));
     const styleVSCodeUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', 'vscode.css'));
+    const styleAboutCodeUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', 'about.css'));
 
     const scriptUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'out', 'compiled/About.js'));
 
@@ -85,6 +86,7 @@ export class AboutZistProvider implements vscode.WebviewViewProvider {
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
 				<link href="${styleResetUri}" rel="stylesheet">
 				<link href="${styleVSCodeUri}" rel="stylesheet">
+                <link href="${styleAboutCodeUri}" rel="stylesheet">
         <script nonce="${nonce}" >
         const tsvscode = acquireVsCodeApi()
         const apiBaseUrl = ${JSON.stringify(apiBaseUrl)}

@@ -1,5 +1,5 @@
-import * as vscode from "vscode";
-import { getNonce } from "../utils/getNonce";
+import * as vscode from 'vscode';
+import { getNonce } from '../utils/getNonce';
 
 export class FullscreenProvider {
   /**
@@ -7,40 +7,30 @@ export class FullscreenProvider {
    */
   public static currentPanel: FullscreenProvider | undefined;
 
-  public static readonly viewType = "zist-vscode.fullscreen";
+  public static readonly viewType = 'zist-vscode.fullscreen';
 
   private readonly _panel: vscode.WebviewPanel;
   private readonly _extensionUri: vscode.Uri;
   private _disposables: vscode.Disposable[] = [];
 
   public static createOrShow(extensionUri: vscode.Uri) {
-    const column = vscode.window.activeTextEditor
-      ? vscode.window.activeTextEditor.viewColumn
-      : undefined;
+    const column = vscode.window.activeTextEditor ? vscode.window.activeTextEditor.viewColumn : undefined;
 
     // If we already have a panel, show it.
     if (FullscreenProvider.currentPanel) {
-        FullscreenProvider.currentPanel._panel.reveal(column);
-        FullscreenProvider.currentPanel._update();
+      FullscreenProvider.currentPanel._panel.reveal(column);
+      FullscreenProvider.currentPanel._update();
       return;
     }
 
     // Otherwise, create a new panel.
-    const panel = vscode.window.createWebviewPanel(
-        FullscreenProvider.viewType,
-      "Zist-Vscode | fullscreen",
-      column || vscode.ViewColumn.One,
-      {
-        // Enable javascript in the webview
-        enableScripts: true,
+    const panel = vscode.window.createWebviewPanel(FullscreenProvider.viewType, 'Zist-Vscode | fullscreen', column || vscode.ViewColumn.One, {
+      // Enable javascript in the webview
+      enableScripts: true,
 
-        // And restrict the webview to only loading content from our extension's `media` directory.
-        localResourceRoots: [
-          vscode.Uri.joinPath(extensionUri, "media"),
-          vscode.Uri.joinPath(extensionUri, "out/compiled"),
-        ],
-      }
-    );
+      // And restrict the webview to only loading content from our extension's `media` directory.
+      localResourceRoots: [vscode.Uri.joinPath(extensionUri, 'media'), vscode.Uri.joinPath(extensionUri, 'out/compiled')],
+    });
 
     FullscreenProvider.currentPanel = new FullscreenProvider(panel, extensionUri);
   }
@@ -97,16 +87,16 @@ export class FullscreenProvider {
     const webview = this._panel.webview;
 
     this._panel.webview.html = this._getHtmlForWebview(webview);
-    webview.onDidReceiveMessage(async (data) => {
+    webview.onDidReceiveMessage(async data => {
       switch (data.type) {
-        case "onInfo": {
+        case 'onInfo': {
           if (!data.value) {
             return;
           }
           vscode.window.showInformationMessage(data.value);
           break;
         }
-        case "onError": {
+        case 'onError': {
           if (!data.value) {
             return;
           }
@@ -124,17 +114,11 @@ export class FullscreenProvider {
 
   private _getHtmlForWebview(webview: vscode.Webview) {
     // // And the uri we use to load this script in the webview
-    const scriptUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, "out/compiled", "FullscreenProvider.js")
-    );
+    const scriptUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'out/compiled', 'FullscreenProvider.js'));
 
     // Uri to load styles into webview
-    const stylesResetUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, "media", "reset.css")
-    );
-    const stylesMainUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, "media", "vscode.css")
-    );
+    const stylesResetUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', 'reset.css'));
+    const stylesMainUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', 'vscode.css'));
     // const cssUri = webview.asWebviewUri(
     //   vscode.Uri.joinPath(this._extensionUri, "out", "compiled/swiper.css")
     // );
