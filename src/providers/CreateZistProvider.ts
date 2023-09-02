@@ -1,10 +1,11 @@
 import * as vscode from 'vscode';
 import { getNonce } from '../utils/getNonce';
 
-export class AccordianProvider implements vscode.WebviewViewProvider {
-  public static readonly viewType = 'zist-vscode.sidebar-accordian';
+export class CreateZistProvider implements vscode.WebviewViewProvider {
+  public static readonly viewType = 'zist-vscode.sidebar-accordian-create';
 
-  private _view?: vscode.WebviewView;
+  _view?: vscode.WebviewView;
+  _doc?: vscode.TextDocument;
 
   constructor(private readonly _extensionUri: vscode.Uri) {}
 
@@ -30,27 +31,14 @@ export class AccordianProvider implements vscode.WebviewViewProvider {
     });
   }
 
-  public addColor() {
-    if (this._view) {
-      this._view.show?.(true); // `show` is not implemented in 1.49 but is for 1.50 insiders
-      this._view.webview.postMessage({ type: 'addColor' });
-    }
-  }
-
-  public clearColors() {
-    if (this._view) {
-      this._view.webview.postMessage({ type: 'clearColors' });
-    }
-  }
-
   private _getHtmlForWebview(webview: vscode.Webview) {
     // Get the local path to main script run in the webview, then convert it to a uri we can use in the webview.
-    const scriptUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', 'main.js'));
+    const scriptUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'out', 'compiled/HelloWorld.js'));
 
     // Do the same for the stylesheet.
     const styleResetUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', 'reset.css'));
     const styleVSCodeUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', 'vscode.css'));
-    const styleMainUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', 'main.css'));
+    // const styleMainUri = webview.asWebviewUri(vscode.Uri.joinPath(this._extensionUri, 'media', 'main.css'));
 
     // Use a nonce to only allow a specific script to be run.
     const nonce = getNonce();
@@ -71,16 +59,10 @@ export class AccordianProvider implements vscode.WebviewViewProvider {
 
 				<link href="${styleResetUri}" rel="stylesheet">
 				<link href="${styleVSCodeUri}" rel="stylesheet">
-				<link href="${styleMainUri}" rel="stylesheet">
 
 				<title>Cat Colors</title>
 			</head>
 			<body>
-				<ul class="color-list">
-				</ul>
-
-				<button class="add-color-button">Add Color</button>
-
 				<script nonce="${nonce}" src="${scriptUri}"></script>
 			</body>
 			</html>`;
