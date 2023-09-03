@@ -9,6 +9,7 @@ export const constKeys = {
   onAuthenticate: 'ON_AUTHENTICATE',
   onInfo: 'ON_INFO',
   onError: 'ON_ERROR',
+  openURL: 'OPEN_URL'
 };
 
 export const constType = {

@@ -54,6 +54,14 @@ export class AboutZistProvider implements vscode.WebviewViewProvider {
           vscode.window.showErrorMessage(data.value);
           break;
         }
+
+        case constKeys.openURL: {
+          if (!data.value) {
+            return;
+          }
+          vscode.env.openExternal(vscode.Uri.parse(data.value));
+          break;
+        }
       }
     });
   }
@@ -88,7 +96,7 @@ export class AboutZistProvider implements vscode.WebviewViewProvider {
 				<link href="${styleVSCodeUri}" rel="stylesheet">
                 <link href="${styleAboutCodeUri}" rel="stylesheet">
         <script nonce="${nonce}" >
-        const tsvscode = acquireVsCodeApi()
+        const vscodeChannel = acquireVsCodeApi()
         const apiBaseUrl = ${JSON.stringify(apiBaseUrl)}
         </script> 
 			</head>
