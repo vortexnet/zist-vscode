@@ -28,3 +28,116 @@ html {
     max-width: 100%;
     height: auto;
   }
+
+.code-box {
+  min-height: 160px;
+  border: 1px solid #dbe7d8;
+  border-radius: 4px;
+  margin: 3px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.code-container{
+  padding: 12px 6px 6px 6px;
+  white-space: pre-line;
+  color: var(--vscode-textPreformat-foreground);
+}
+.code-box-extend {
+  height: 28px;
+  background-color: var(--p-backdrop);
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+button {
+  margin-top: 8px;
+}
+
+.mi {
+  font-size: 1.4rem;
+  position: absolute;
+}
+  .mi-chevron-down{
+    pointer-events: all;
+    cursor: pointer;
+    color: white;
+    font-size: 18px;
+    padding-right: 6px;
+  }
+  .mi-copy{
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+
+  }
+  .mi-check{
+    color: var(--p-action-primary);
+    cursor: pointer;
+    font-size: 18px;
+  }
+  .mi-chevron-up{
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    padding-right: 6px;
+  }
+
+  .mi-external-link{
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+  }
+
+.mi-copy:hover, .mi-chevron-up:hover, .mi-chevron-down:hover, .mi-external-link:hover {
+  color:  var(--vscode-textPreformat-foreground);
+
+}
+.icons-container{
+  position: absolute;
+  top: 0px ;
+  right: 4px;
+  display: flex;
+  gap: 5px;
+  justify-content: space-between;
+  width: 100%;
+}
+.file-name{
+  margin-left: 10px;
+  color: white;
+}
+  .skeleton-container {
+    background-color: var(--p-border-depressed);
+    border-radius: 4px;
+    padding: 16px;
+    width: 100%;
+  }
+
+  /* Skeleton lines */
+  .skeleton-line {
+    background-color: var(--p-icon);
+    height: 10px;
+    margin-bottom: 8px;
+  }
+
+  /* Create some animated shimmer effect */
+  @keyframes shimmer {
+    0% {
+      background-position: -200px 0;
+    }
+    100% {
+      background-position: 200px 0;
+    }
+  }
+
+  /* Apply the shimmer animation to the skeleton lines */
+  .skeleton-line.shimmer {
+    animation: shimmer 1.5s infinite linear;
+    background: linear-gradient(90deg, #040303 25%, #141212 50%, #000000 75%);
+    background-size: 200% 100%;
+  }

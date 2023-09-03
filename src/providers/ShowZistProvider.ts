@@ -54,6 +54,14 @@ export class ShowZistProvider implements vscode.WebviewViewProvider {
           vscode.window.showErrorMessage(data.value);
           break;
         }
+
+        case constKeys.openURL: {
+          if (!data.value) {
+            return;
+          }
+          vscode.env.openExternal(vscode.Uri.parse(data.value));
+          break;
+        }
       }
     });
   }
@@ -74,6 +82,7 @@ export class ShowZistProvider implements vscode.WebviewViewProvider {
     return `<!DOCTYPE html>
 			<html lang="en">
 			<head>
+      <link rel="stylesheet" href="https://unpkg.com/mono-icons@1.0.5/iconfont/icons.css" >
 				<meta charset="UTF-8">
 				<!--
 					Use a content security policy to only allow loading images from https or from our extension directory,
@@ -86,7 +95,7 @@ export class ShowZistProvider implements vscode.WebviewViewProvider {
 				<link href="${styleResetUri}" rel="stylesheet">
 				<link href="${styleVSCodeUri}" rel="stylesheet">
         <script nonce="${nonce}" >
-        const tsvscode = acquireVsCodeApi()
+        const vscodeChannel = acquireVsCodeApi()
         const apiBaseUrl = ${JSON.stringify(apiBaseUrl)}
         </script> 
 			</head>

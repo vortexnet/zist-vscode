@@ -1,5 +1,5 @@
 :root {
-    --container-paddding: 20px;
+    --container-paddding: 8px;
     --input-padding-vertical: 6px;
     --input-padding-horizontal: 4px;
     --input-margin-vertical: 4px;
@@ -14,12 +14,7 @@
     font-family: var(--vscode-font-family);
     background-color: var(--vscode-editor-background);
   }
-  
-  ol,
-  ul {
-    padding-left: var(--container-paddding);
-  }
-  
+    
   body > *,
   form > * {
     margin-block-start: var(--input-margin-vertical);
