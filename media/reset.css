@@ -48,7 +48,7 @@ html {
 }
 .code-box-extend {
   height: 28px;
-  background-color: var(--p-backdrop);
+  background-color: var(--vscode-panel-background);
   display: flex;
   width: 100%;
   align-items: center;
@@ -106,10 +106,20 @@ button {
   gap: 5px;
   justify-content: space-between;
   width: 100%;
+  padding-top: 3px;
 }
 .file-name{
   margin-left: 10px;
   color: white;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.actionable-icons{
+  display: flex;
+  align-items: center;
+  padding: 0px 5px;
+  gap: 3px;
 }
   .skeleton-container {
     background-color: var(--p-border-depressed);

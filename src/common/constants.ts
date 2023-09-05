@@ -1,5 +1,7 @@
 export const apiBaseUrl = 'http://localhost:3002';
 
+export const webAppURL = 'https://zistapp.xyz';
+
 export const GITHUB_AUTH_PROVIDER_ID = 'github';
 export const SCOPES = ['user:email'];
 

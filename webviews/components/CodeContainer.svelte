@@ -15,7 +15,7 @@
  </pre>
 <div class="icons-container">
   <div class="file-name">{filename}</div>
-  <div>
+  <div class="actionable-icons">
     {#if !copied}<i on:click={copyToClipboard} on:keypress={copyToClipboard} class="mi-copy" />
     {:else}
       <i class="mi-check" />
