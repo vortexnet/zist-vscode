@@ -30,9 +30,22 @@ export function getFiles(parentObjectArray) {
 }
 
 export function truncateString(str, maxLen) {
-  if (str.length > maxLen) {
-    return { string: str, truncatedString: str.slice(0, maxLen) + '...', isTruncated: true };
-  } else {
-    return { string: str, truncatedString: str, isTruncated: false };
+  const lines = str.split(/\r\n|\r|\n/);
+  const numberOfLines = lines.length;
+  const truncatedLines = numberOfLines > 7 ? lines.slice(0, 7) : lines;
+
+  let truncatedText = truncatedLines.join('\n');
+
+  if (numberOfLines > 7) {
+    truncatedText += '...';
   }
+  return { truncatedString: truncatedText, isTruncated: numberOfLines > 7 };
+}
+
+export function debounce(func, wait) {
+  let timeout;
+  return function () {
+    clearTimeout(timeout);
+    timeout = setTimeout(func, wait);
+  };
 }

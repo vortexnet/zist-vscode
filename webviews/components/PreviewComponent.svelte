@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import { GistFileType } from '../types';
   import { truncateString } from '../../src/utils/editor_utils';
-  import { constKeys } from '../../src/common/constants';
+  import { constKeys, webAppURL } from '../../src/common/constants';
   import Skeleton from './Skeleton.svelte';
   import type { Gist } from '../../src/types';
   import CodeContainer from './CodeContainer.svelte';
@@ -25,7 +25,7 @@
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
-      const result = truncateString(fileData, 180);
+      const result = truncateString(fileData, 8);
       truncatedCode = result.truncatedString;
       isTruncated = result.isTruncated;
       isLoading = false;
@@ -50,9 +50,11 @@
   function resetState() {
     copied = false;
   }
+
   function resetAfterTimeout() {
     setTimeout(resetState, 5000); // 5000 milliseconds (5 seconds)
   }
+
   async function copyToClipboard() {
     try {
       await navigator.clipboard.writeText(fileData);
@@ -64,7 +66,10 @@
     }
   }
   function openInBrowser() {
-    vscodeChannel.postMessage({ type: constKeys.openURL, value: item.raw_url });
+    const id = item.raw_url.match(/\/([^/]+)\/raw\//)?.[1];
+    console.log('ITEM', id);
+    const url = `${webAppURL}/gist/${id}`;
+    vscodeChannel.postMessage({ type: constKeys.openURL, value: url });
   }
 </script>
 
