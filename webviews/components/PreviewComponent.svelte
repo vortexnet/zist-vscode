@@ -25,13 +25,14 @@
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
-      const result = truncateString(fileData, 8);
+      const result = truncateString(fileData, 16);
       truncatedCode = result.truncatedString;
       isTruncated = result.isTruncated;
       isLoading = false;
       code = truncatedCode;
     }
   }
+
   onMount(fetchSingleGistData);
   fetchSingleGistData();
 
@@ -65,6 +66,7 @@
       resetAfterTimeout();
     }
   }
+
   function openInBrowser() {
     const id = item.raw_url.match(/\/([^/]+)\/raw\//)?.[1];
     console.log('ITEM', id);

@@ -32,14 +32,14 @@ export function getFiles(parentObjectArray) {
 export function truncateString(str, maxLen) {
   const lines = str.split(/\r\n|\r|\n/);
   const numberOfLines = lines.length;
-  const truncatedLines = numberOfLines > 7 ? lines.slice(0, 7) : lines;
+  const truncatedLines = numberOfLines > maxLen ? lines.slice(0, maxLen) : lines;
 
   let truncatedText = truncatedLines.join('\n');
 
-  if (numberOfLines > 7) {
+  if (numberOfLines > maxLen) {
     truncatedText += '...';
   }
-  return { truncatedString: truncatedText, isTruncated: numberOfLines > 7 };
+  return { truncatedString: truncatedText, isTruncated: numberOfLines > maxLen };
 }
 
 export function debounce(func, wait) {
