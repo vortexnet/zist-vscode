@@ -8,11 +8,18 @@
   export let handleExtendClick: () => void;
   export let filename: string;
   export let handleCompressClick: () => void;
+
+  import atomOneDark from 'svelte-highlight/styles/atom-one-dark';
+  import { HighlightAuto } from 'svelte-highlight';
 </script>
 
-<pre class="code-container">
-    {code}
- </pre>
+<svelte:head>
+  {@html atomOneDark}
+</svelte:head>
+
+<div class="code-container">
+  <HighlightAuto {code} class="pre-code" />
+</div>
 <div class="icons-container">
   <div class="file-name">{filename}</div>
   <div class="actionable-icons">

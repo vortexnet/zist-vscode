@@ -42,9 +42,12 @@ html {
   justify-content: space-between;
 }
 .code-container{
-  padding: 12px 6px 6px 6px;
+  padding: 12px 6px 0px 6px;
   white-space: pre-line;
   color: var(--vscode-textPreformat-foreground);
+}
+.pre-code{
+  margin: 1em 0em 0em;
 }
 .code-box-extend {
   height: 28px;
@@ -126,6 +129,7 @@ button {
     border-radius: 4px;
     padding: 16px;
     width: 100%;
+    min-height: '180px';
   }
 
   /* Skeleton lines */
