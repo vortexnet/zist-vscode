@@ -2,8 +2,11 @@ export const apiBaseUrl = 'http://localhost:3002';
 
 export const webAppURL = 'https://zistapp.xyz';
 
+export const gistsEndPoint = 'https://api.github.com';
+
+
 export const GITHUB_AUTH_PROVIDER_ID = 'github';
-export const SCOPES = ['user:email'];
+export const SCOPES = ['user:email', 'gist'];
 
 export const constKeys = {
   getUser: 'GET_USER',
@@ -12,9 +15,11 @@ export const constKeys = {
   onInfo: 'ON_INFO',
   onError: 'ON_ERROR',
   openURL: 'OPEN_URL',
+  authenticated: 'AUTHENTICATED',
+  unAuthenticate: 'UN_AUTHENTICATE',
 };
 
 export const constType = {
-  userObject: 'USER_OBJECT',
+  userName: 'USER_NAME',
   token: 'TOKEN',
 };

@@ -9,6 +9,7 @@ export async function authorize() {
       accessToken: session.accessToken,
       name: session.account.label,
       scopes: session.scopes,
+      authenticated: true,
     });
   } else {
     const callbackMessage = await vscode.window.showErrorMessage('Failed to authenticate with github, Please try again', 'Retry');

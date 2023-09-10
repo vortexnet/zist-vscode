@@ -1,14 +1,15 @@
 import * as vscode from 'vscode';
-import { UserManager } from '../GlobalStateManager';
+import { UserManager, UserObject } from '../GlobalStateManager';
 import { apiBaseUrl, constKeys, constType } from '../common/constants';
 import { getNonce } from '../common/getNonce';
+import { authorize } from '../oAuth/authorize';
 
 export class ShowZistProvider implements vscode.WebviewViewProvider {
   public static readonly viewType = 'zist-vscode.sidebar-accordian-list';
   _view?: vscode.WebviewView;
   _doc?: vscode.TextDocument;
 
-  constructor(private readonly _extensionUri: vscode.Uri) {}
+  constructor(private readonly _extensionUri: vscode.Uri) { }
 
   public resolveWebviewView(webviewView: vscode.WebviewView) {
     this._view = webviewView;
@@ -25,6 +26,16 @@ export class ShowZistProvider implements vscode.WebviewViewProvider {
     webviewView.webview.onDidReceiveMessage(async data => {
       switch (data.type) {
         case constKeys.onAuthenticate: {
+          const user = UserManager.getUserObject() as UserObject;
+          console.log('user', user);
+          if (!user.accessToken) {
+            vscode.commands.executeCommand('zist-vscode.authenticate').then(() => {
+              webviewView.webview.postMessage({
+                type: constKeys.authenticated,
+                value: UserManager.getUserObject(),
+              });
+            });
+          }
           webviewView.webview.postMessage({
             type: constType.token,
             value: UserManager.getUserObject(),
@@ -34,7 +45,7 @@ export class ShowZistProvider implements vscode.WebviewViewProvider {
 
         case constKeys.getUser: {
           webviewView.webview.postMessage({
-            type: constType.userObject,
+            type: constType.userName,
             value: UserManager.getUserObject(),
           });
         }
@@ -61,6 +72,13 @@ export class ShowZistProvider implements vscode.WebviewViewProvider {
           }
           vscode.env.openExternal(vscode.Uri.parse(data.value));
           break;
+        }
+        case constKeys.unAuthenticate: {
+          UserManager.setUserObject({});
+          webviewView.webview.postMessage({
+            type: constKeys.unAuthenticate,
+            value: UserManager.getUserObject(),
+          });
         }
       }
     });
@@ -89,9 +107,8 @@ export class ShowZistProvider implements vscode.WebviewViewProvider {
 					Use a content security policy to only allow loading images from https or from our extension directory,
 					and only allow scripts that have a specific nonce.
         -->
-        <meta http-equiv="Content-Security-Policy" content="img-src https: data:; style-src 'unsafe-inline' ${
-          webview.cspSource
-        }; script-src 'nonce-${nonce}';">
+        <meta http-equiv="Content-Security-Policy" content="img-src https: data:; style-src 'unsafe-inline' ${webview.cspSource
+      }; script-src 'nonce-${nonce}';">
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
 				<link href="${styleResetUri}" rel="stylesheet">
 				<link href="${styleVSCodeUri}" rel="stylesheet">

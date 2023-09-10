@@ -1,6 +1,18 @@
-import { DebounceScrollFunction, Files, Gist, GistFileType } from '../../types';
+/* eslint-disable @typescript-eslint/naming-convention */
+import type { AxiosRequestConfig } from 'axios';
+import type
+{
+  DebounceScrollFunction,
+  Files,
+  Gist,
+  GistFileType,
+  UserObject,
+} from '../../types';
+
+
+
 export function getFilesAsArray(files: Files[]) {
-  const outputArray: GistFileType[]  = [];
+  const outputArray: GistFileType[] = [];
 
   files.forEach(item => {
     // Check if an object contains multiple key-value pairs
@@ -15,24 +27,21 @@ export function getFilesAsArray(files: Files[]) {
       });
     }
   });
-  console.log('OUT PUT ARRAY', outputArray);
   return outputArray;
 }
 
 export function getFiles(parentObjectArray: Gist[]): GistFileType[] {
   const files = [];
-  console.log('PARENT OBJECT', parentObjectArray);
 
   // Iterate through the parent object array and extract the 'files' objects
   for (const parentObject of parentObjectArray) {
     const filesObject = parentObject.files;
     files.push(filesObject);
   }
-  console.log('FILES', files);
   return getFilesAsArray(files);
 }
 
-export function truncateString(str: string, maxLen: number):{ truncatedString: string; isTruncated: boolean }  {
+export function truncateString(str: string, maxLen: number): { truncatedString: string; isTruncated: boolean } {
   const lines = str.split(/\r\n|\r|\n/);
   const numberOfLines = lines.length;
   const truncatedLines = numberOfLines > maxLen ? lines.slice(0, maxLen) : lines;
@@ -46,9 +55,25 @@ export function truncateString(str: string, maxLen: number):{ truncatedString: s
 }
 
 export function debounce(func: DebounceScrollFunction, wait: number) {
-  let timeout: NodeJS.Timeout | undefined;
+  let timeout: number | undefined;
   return function () {
     clearTimeout(timeout);
     timeout = setTimeout(func, wait);
   };
+}
+
+export function getHeader(userObject: UserObject): AxiosRequestConfig | undefined {
+  if (!userObject) {
+    return undefined;
+  }
+  const token = userObject.accessToken;
+  const header: AxiosRequestConfig = {
+    headers: {
+      'Accept': 'application/vnd.github+json',
+      'Authorization': `Bearer ${token}`,
+      'X-GitHub-Api-Version': '2022-11-28'
+    }
+  };
+
+  return header;
 }

@@ -3,34 +3,66 @@
   import { writable } from 'svelte/store';
 
   import PreviewComponent from './PreviewComponent.svelte';
-  import type { GistFileType } from '../types';
-  import { debounce, getFiles } from './utils/editor_utils';
+  import type { GistFileType, UserObject } from '../types';
+  import { debounce, getFiles, getHeader } from './utils/editor_utils';
   import Skeleton from './Skeleton.svelte';
+  import { constKeys, constType } from './common/constants';
+  import type { AxiosRequestConfig, AxiosResponse } from 'axios';
+  import axios from 'axios';
+  import UnAuthenticated from './UnAuthenticated.svelte';
 
+  let userObject: UserObject | null = null;
+  let gists = writable<GistFileType[]>([]);
+  let isAuthenticated: boolean = true;
+  let limitReached = false;
   let isLoading = false;
   let page = 1;
 
-  let gists = writable<GistFileType[]>([]);
-
   async function fetchData() {
-    if (isLoading) return; // Don't fetch data if already loading
-    isLoading = true;
+    const headers: AxiosRequestConfig | undefined = getHeader(userObject!);
+
+    if (!userObject || isLoading || limitReached || !isAuthenticated) return;
+
     try {
-      const response = await fetch(`https://api.github.com/users/benawad/gists?page=${page}&per_page=10`);
+      isLoading = true;
+      const response: AxiosResponse = await axios.get(`https://api.github.com/gists?page=${page}&per_page=10`, {
+        method: 'GET',
+        headers: headers?.headers,
+      });
       if (response.status === 200) {
-        const jsonData = await response.json();
+        const jsonData = await response.data;
         const sanitizedGists = getFiles(jsonData);
+
+        if (jsonData.length === 0) {
+          limitReached = true;
+        }
+
         gists.update(existingGists => [...existingGists, ...sanitizedGists]);
         page++;
       }
-      console.log('PAGE', page);
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
       isLoading = false;
     }
   }
-  onMount(fetchData);
+
+  onMount(async () => {
+    window.addEventListener('message', async event => {
+      const message = event.data;
+      switch (message.type) {
+        case constType.userName:
+          userObject = message.value;
+          if (!userObject?.accessToken) {
+            isAuthenticated = false;
+            return;
+          }
+          await fetchData();
+          break;
+      }
+    }),
+      vscodeChannel.postMessage({ type: constKeys.getUser, value: undefined });
+  });
 
   const debounceScroll = debounce(() => {
     const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
@@ -40,8 +72,14 @@
   }, 500);
 
   afterUpdate(() => {
+    fetchData;
     window.addEventListener('scroll', debounceScroll);
   });
+
+  function updateAuthenticationStatus(status: boolean) {
+    isAuthenticated = status;
+    fetchData();
+  }
 </script>
 
 <div>
@@ -51,6 +89,10 @@
         <Skeleton />
       </div>
     {/each}
+  {:else if !isAuthenticated && !isLoading}
+    <div>
+      <UnAuthenticated {isAuthenticated} {updateAuthenticationStatus} />
+    </div>
   {:else}
     <ul>
       {#each $gists as item (item)}
@@ -58,4 +100,5 @@
       {/each}
     </ul>
   {/if}
+  <div class="ratelimit-hit" />
 </div>
