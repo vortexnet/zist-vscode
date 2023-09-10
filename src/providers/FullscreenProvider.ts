@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { getNonce } from '../utils/getNonce';
+import { getNonce } from '../common/getNonce';
 
 export class FullscreenProvider {
   /**

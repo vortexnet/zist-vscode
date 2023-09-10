@@ -1,11 +1,10 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { GistFileType } from '../types';
-  import { truncateString } from '../../src/utils/editor_utils';
-  import { constKeys, webAppURL } from '../../src/common/constants';
+  import type { GistFileType } from '../types';
+  import { truncateString } from './utils/editor_utils';
   import Skeleton from './Skeleton.svelte';
-  import type { Gist } from '../../src/types';
   import CodeContainer from './CodeContainer.svelte';
+  import { constKeys, webAppURL } from './common/constants';
 
   let isLoading = true;
   export let item: GistFileType;

@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
-import { getNonce } from '../utils/getNonce';
-import { apiBaseUrl, constKeys, constType } from '../common/constants';
 import { UserManager } from '../GlobalStateManager';
+import { apiBaseUrl, constKeys, constType } from '../common/constants';
+import { getNonce } from '../common/getNonce';
 
 export class AboutZistProvider implements vscode.WebviewViewProvider {
   public static readonly viewType = 'zist-vscode.sidebar-accordian-about';

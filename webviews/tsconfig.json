@@ -1,6 +1,11 @@
 {
     "extends": "@tsconfig/svelte/tsconfig.json",
-    "include": ["./**/*", ],
+    "include": ["./**/*", "../src/common/getNonce.ts", ],
     "exclude": ["../node_modules/*"],
-    "compilerOptions": {"strict": true, }
+    "compilerOptions": {
+      "strict": true,
+      "rootDir": "./",
+      "verbatimModuleSyntax": true,
+        }
+
   }
