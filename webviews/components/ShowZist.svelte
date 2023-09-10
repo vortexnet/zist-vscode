@@ -3,14 +3,14 @@
   import { writable } from 'svelte/store';
 
   import PreviewComponent from './PreviewComponent.svelte';
-  import { Gist } from '../types';
-  import { debounce, getFiles } from '../../src/utils/editor_utils';
+  import type { GistFileType } from '../types';
+  import { debounce, getFiles } from './utils/editor_utils';
   import Skeleton from './Skeleton.svelte';
 
   let isLoading = false;
   let page = 1;
 
-  let gists = writable<Gist[]>([]);
+  let gists = writable<GistFileType[]>([]);
 
   async function fetchData() {
     if (isLoading) return; // Don't fetch data if already loading
@@ -21,7 +21,6 @@
         const jsonData = await response.json();
         const sanitizedGists = getFiles(jsonData);
         gists.update(existingGists => [...existingGists, ...sanitizedGists]);
-        console.log('value', $gists);
         page++;
       }
       console.log('PAGE', page);

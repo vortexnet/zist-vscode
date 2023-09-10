@@ -7,7 +7,6 @@ import { AboutZistProvider } from './providers/AboutZistProvider';
 import { UserManager } from './GlobalStateManager';
 
 export function activate(context: vscode.ExtensionContext) {
-
   // create global context
   UserManager.globalState = context.globalState;
 
@@ -25,7 +24,7 @@ export function activate(context: vscode.ExtensionContext) {
   //theme config
   const config = vscode.workspace.getConfiguration('workbench');
   const themeName = config.get('colorTheme');
-  console.log('THEME',themeName);
+  console.log('THEME', themeName);
 
   context.subscriptions.push(vscode.window.registerWebviewViewProvider(ShowZistProvider.viewType, showProvider));
 

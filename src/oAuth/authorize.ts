@@ -1,7 +1,7 @@
+import { GITHUB_AUTH_PROVIDER_ID, SCOPES } from '../common/constants';
 import * as vscode from 'vscode';
 
 import { UserManager } from '../GlobalStateManager';
-import { GITHUB_AUTH_PROVIDER_ID, SCOPES } from '../common/constants';
 export async function authorize() {
   const session = await vscode.authentication.getSession(GITHUB_AUTH_PROVIDER_ID, SCOPES, { createIfNone: true });
   if (session) {

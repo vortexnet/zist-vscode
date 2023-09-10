@@ -62,3 +62,4 @@ export type Gist = {
   export interface GistData {
     data: Gist[];
   }
+  export type DebounceScrollFunction = () => void;

@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { getNonce } from '../utils/getNonce';
+import { getNonce } from '../common/getNonce';
 
 export class CreateZistProvider implements vscode.WebviewViewProvider {
   public static readonly viewType = 'zist-vscode.sidebar-accordian-create';
