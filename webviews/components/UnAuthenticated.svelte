@@ -10,7 +10,6 @@
   onMount(() => {
     window.addEventListener('message', async event => {
       const message = event.data;
-      console.log('message on auth', message);
       switch (message.type) {
         case constKeys.authenticated:
           userObject = message.value;
@@ -23,7 +22,6 @@
           }
           break;
         case constKeys.unAuthenticate:
-          console.log('just unauthenticated on unauth emssage', message);
           isAuthenticated = false;
       }
     });
