@@ -5,8 +5,8 @@ const KEY = 'token';
 export type UserObject = {
   accessToken: string;
   name: string;
-  scopes: [string],
-  authenticated: boolean,
+  scopes: [string];
+  authenticated: boolean;
 };
 export class UserManager {
   static globalState: vscode.Memento;

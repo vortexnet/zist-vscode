@@ -21,10 +21,9 @@ export const constKeys = {
 export const constType = {
   userName: 'USER_NAME',
   token: 'TOKEN',
-
 };
 
 export const COMMANDS = {
-  // TODO: create an constants file for all the command so that new commands 
+  // TODO: create an constants file for all the command so that new commands
   // when added will be adde here and in package.json
 };

@@ -176,3 +176,23 @@ button {
 .unauthenticated_header{
   padding-bottom: 1rem;
 }
+
+.about-zist{
+  text-align: left;
+  font-size: small;
+  padding: 0.5rem 0rem;
+}
+.about-header{
+  text-align: center;
+  padding-bottom: 0.5rem;
+}
+
+.about-resources{
+  padding: 0.5rem 0rem;
+}
+
+.about-developer{
+  padding-top: 0.5rem;
+  text-align: center;
+  padding-bottom: 1rem;
+}
