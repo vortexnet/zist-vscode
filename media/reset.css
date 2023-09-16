@@ -196,3 +196,33 @@ button {
   text-align: center;
   padding-bottom: 1rem;
 }
+/* NoGists.css */
+.no-gists {
+  font-family: Arial, sans-serif; /* Use your preferred font-family here */
+  padding: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Box shadow for a subtle elevation effect */
+}
+
+.header {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Specific font for the header */
+}
+
+.instruction {
+  margin-top: 15px; /* Space between paragraphs */
+}
+
+.list-item {
+  margin-left: 20px; /* Indent list items */
+}
+
+.link {
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline; /* Underline links on hover */
+}
+
+.paragraph {
+  margin-top: 15px; /* Space between paragraphs */
+}
