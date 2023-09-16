@@ -40,10 +40,6 @@ Optimize your coding workflow with the Zist VS Code extension, a revolutionary c
 - You can configure Zist settings by going to Visual Studio Code's settings (File > Preferences > Settings) and searching for "Zist".
 - Customize Zist to suit your workflow and preferences.
 
-## Contributing
-
-Contributions to the Zist VS Code extension are always welcome! Whether you want to report a bug, suggest an enhancement, or contribute code, please follow the guidelines in our [CONTRIBUTING.md](CONTRIBUTING.md) file.
-
 ## Support
 
 For support or questions, please [open an issue](https://github.com/vortexnet/zist-vscode/issues/new) on GitHub or reach out to us at [millanpoudel1@gmail.com](mailto:millanpoudel1@gmail.com).
