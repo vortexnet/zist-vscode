@@ -1,71 +1,71 @@
-# zist-vscode README
+# Zist VS Code Extension
 
-This is the README for your extension "zist-vscode". After writing up a brief description, we recommend including the following sections.
+Optimize your coding workflow with the Zist VS Code extension, a revolutionary code snippet manager. Save, organize, and access your code snippets effortlessly within Visual Studio Code. Zist syncs with your GitHub gists, making your snippets available directly in your development environment. Turn coding chaos into clarity with Zist.
+
+![Zist-Vscode](https://github.com/vortexnet/zist-vscode/assets/23433891/f8496c0f-51d7-4149-869a-c661ca112ede)
+
+# Creating a Zist snippet
+![video-list](https://github.com/vortexnet/zist-vscode/assets/23433891/5dd53c69-1c49-4e46-b2e4-48f50a72a3ea)
+
+# Listing and copying
+![video-create](https://github.com/vortexnet/zist-vscode/assets/23433891/9f8acb8d-6c92-47e7-95f7-19e02a4aea83)
+
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
 
-For example if there is an image subfolder under your extension project workspace:
+- Save and manage code snippets directly within Visual Studio Code.
+- Organize snippets into categories or folders for easy access.
+- Sync with your GitHub gists for seamless integration with your coding projects.
+- Access and insert snippets into your code with a few clicks.
+- Boost productivity and streamline your coding tasks with Zist.
 
-\!\[feature X\]\(images/feature-x.png\)
+## Installation
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+1. Open Visual Studio Code.
+2. Go to the Extensions view by clicking on the Extensions icon in the Activity Bar on the side of the window or by using the keyboard shortcut `Ctrl+Shift+X`.
+3. Search for "Zist" in the Extensions view search bar.
+4. Click the "Install" button next to the "Zist" extension by [Your Name].
+5. Once installed, the Zist extension icon will appear in the activity bar.
 
-## Requirements
+## Usage
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+1. Click on the Zist extension icon in the activity bar to open the Zist panel.
+2. Sign in with your GitHub account to sync your gists (if you haven't already).
+3. Create and manage your code snippets in the Zist panel.
+6. Enjoy a more streamlined coding experience with Zist!
 
-## Extension Settings
+## Configuration
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+- You can configure Zist settings by going to Visual Studio Code's settings (File > Preferences > Settings) and searching for "Zist".
+- Customize Zist to suit your workflow and preferences.
 
-For example:
+## Contributing
 
-This extension contributes the following settings:
+Contributions to the Zist VS Code extension are always welcome! Whether you want to report a bug, suggest an enhancement, or contribute code, please follow the guidelines in our [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+## Support
 
-## Known Issues
+For support or questions, please [open an issue](https://github.com/yourusername/zist-vscode-extension/issues) on GitHub or reach out to us at [millanpoudel1@gmail.com](mailto:mukunpoudel1@gmail.com).
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+## License
 
-## Release Notes
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
-Users appreciate release notes as you update your extension.
+## Authors
 
-### 1.0.0
+- [Millan Poudel](https://github.com/MillanSharma)
+- [K Srinivas Rao](https://github.com/hellskater)
 
-Initial release of ...
+## Support and Feedback
 
-### 1.0.1
+For support/feedback, 
+- [Email](mailto:millanpoudel1@gmail.com)
+- [Twitter](https://twitter.com/PoudelMillan)
 
-Fixed issue #.
+## Contributing
 
-### 1.1.0
+Contributions are always welcome!
 
-Added features X, Y, and Z.
+See `contributing.md` for ways to get started.
 
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
