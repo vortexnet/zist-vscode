@@ -96,13 +96,11 @@ export async function saveSnippet(params: ConstructPayloadTypes): Promise<string
     throw new Error('Missing authorization header');
   }
 
-  console.log('payload and header', payload, header);
 
   try {
     const response: AxiosResponse = await axios.post('https://api.github.com/gists', payload, {
       headers: header.headers,
     });
-    console.log('res', response);
 
     if (response.status === 200) {
       // Handle the API response data as needed
@@ -112,7 +110,6 @@ export async function saveSnippet(params: ConstructPayloadTypes): Promise<string
       return 'API call failed';
     }
   } catch (error) {
-    console.log('ERROR rn', error);
     if (error instanceof Error) {
       return `API call error: ${error.message}`;
     } else {
@@ -134,10 +131,6 @@ export async function activeTextEditorReference(sharedPayload: SharedPayloadType
   }
 
   const text = activeTextEditor?.document.getText(activeTextEditor.selection);
-  if (text) {
-    vscode.window.showInformationMessage('Text: ' + text);
-  }
-
   sharedPayload.fileName = fileName;
   sharedPayload.language = language;
   sharedPayload.content = text || '';
@@ -194,8 +187,6 @@ export async function showFileInputForm(
     },
     async progress => {
       const apiResponse = await saveSnippet({ fileName: finalFileName, isPublic, description, language, content } as ConstructPayloadTypes);
-      console.log('RESPONSE', apiResponse);
-
       vscode.window.showInformationMessage(apiResponse);
     },
   );

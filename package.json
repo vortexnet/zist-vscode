@@ -37,6 +37,20 @@
           "id": "zist-vscode.sidebar-accordian-about",
           "name": "About"
         }
+      ],
+      "explorer": [
+        {
+          "id": "zist-vscode-explorer-view",
+          "name": "Zist Explorer",
+          "command": "zist-vscode.expolorer-quickpick-input"
+        }
+      ],
+      "debug": [
+        {
+          "id": "zist-vscode-debug-view",
+          "name": "Zist Explorer",
+          "command": "zist-vscode.expolorer-quickpick-input"
+        }
       ]
     },
     "menus": {
@@ -82,7 +96,7 @@
         "icon": "$(link-external)"
       },
       {
-        "command": "zist-vscode.quickpick-input",
+        "command": "zist-vscode.expolorer-quickpick-input",
         "title": "File Name Input",
         "category": "Zist"
       }

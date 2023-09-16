@@ -68,7 +68,6 @@
 
   function openInBrowser() {
     const id = item.raw_url.match(/\/([^/]+)\/raw\//)?.[1];
-    console.log('ITEM', id);
     const url = `${webAppURL}/gist/${id}`;
     vscodeChannel.postMessage({ type: constKeys.openURL, value: url });
   }
