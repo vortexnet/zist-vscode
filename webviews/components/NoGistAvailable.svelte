@@ -4,6 +4,7 @@
   <h4 class="instruction">Looks like you don't have any gists in your GitHub.</h4>
 
   <h4 class="instruction">You can either create a gist from VS Code Editor by following these steps:</h4>
+  <br />
   <li class="list-item">Select any block of code you want to create a snippet of</li>
   <li class="list-item">Click on the 'Create Zist' button you see at the bottom of your VS Code Editor.</li>
   <li class="list-item">Give it a description and name</li>
