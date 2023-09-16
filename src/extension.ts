@@ -32,10 +32,9 @@ export function activate(context: vscode.ExtensionContext) {
   const createProvider = new CreateZistProvider(context.extensionUri);
   const aboutProvider = new AboutZistProvider(context.extensionUri);
 
-  //theme config
+  // theme config
   const config = vscode.workspace.getConfiguration('workbench');
   const themeName = config.get('colorTheme');
-  console.log('THEME', themeName);
 
   context.subscriptions.push(vscode.window.registerWebviewViewProvider(ShowZistProvider.viewType, showProvider));
 

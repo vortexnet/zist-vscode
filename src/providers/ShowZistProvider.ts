@@ -25,9 +25,23 @@ export class ShowZistProvider implements vscode.WebviewViewProvider {
       localResourceRoots: [this._extensionUri],
     };
 
+    // Define a variable to store the current theme
+    let currentTheme = vscode.window.activeColorTheme.kind;
+
+    // Listen for theme change events
+    vscode.window.onDidChangeActiveColorTheme((theme) => {
+      currentTheme = theme.kind;
+      console.log('got something here', currentTheme);
+      webviewView.webview.postMessage({
+        type: constKeys.onThemeChange,
+        value: currentTheme,
+      });
+    });
+
     webviewView.webview.html = this._getHtmlForWebview(webviewView.webview);
 
     webviewView.webview.onDidReceiveMessage(async data => {
+
       switch (data.type) {
         case constKeys.onAuthenticate: {
           const user = UserManager.getUserObject() as UserObject;
@@ -84,6 +98,13 @@ export class ShowZistProvider implements vscode.WebviewViewProvider {
             value: UserManager.getUserObject(),
           });
         }
+
+        case constKeys.onThemeChange: {
+          webviewView.webview.postMessage({
+            type: constKeys.onThemeChange,
+            value: currentTheme,
+          });
+        }
       }
     });
   }
@@ -111,9 +132,8 @@ export class ShowZistProvider implements vscode.WebviewViewProvider {
 					Use a content security policy to only allow loading images from https or from our extension directory,
 					and only allow scripts that have a specific nonce.
         -->
-        <meta http-equiv="Content-Security-Policy" content="img-src https: data:; style-src 'unsafe-inline' ${
-          webview.cspSource
-        }; script-src 'nonce-${nonce}';">
+        <meta http-equiv="Content-Security-Policy" content="img-src https: data:; style-src 'unsafe-inline' ${webview.cspSource
+      }; script-src 'nonce-${nonce}';">
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
 				<link href="${styleResetUri}" rel="stylesheet">
 				<link href="${styleVSCodeUri}" rel="stylesheet">

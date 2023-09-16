@@ -96,7 +96,6 @@ export async function saveSnippet(params: ConstructPayloadTypes): Promise<string
     throw new Error('Missing authorization header');
   }
 
-
   try {
     const response: AxiosResponse = await axios.post('https://api.github.com/gists', payload, {
       headers: header.headers,

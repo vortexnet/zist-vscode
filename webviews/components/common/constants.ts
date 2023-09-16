@@ -17,9 +17,11 @@ export const constKeys = {
   openURL: 'OPEN_URL',
   authenticated: 'AUTHENTICATED',
   unAuthenticate: 'UN_AUTHENTICATE',
+  onThemeChange: 'ON_THEME_CHANGE'
 };
 
 export const constType = {
   userName: 'USER_NAME',
   token: 'TOKEN',
+  toggleTheme: 'TOGGLE_THEME'
 };

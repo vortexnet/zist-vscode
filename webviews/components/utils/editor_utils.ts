@@ -6,6 +6,7 @@ import type
   Files,
   Gist,
   GistFileType,
+  ThemeValue,
   UserObject,
 } from '../../types';
 
@@ -76,4 +77,15 @@ export function getHeader(userObject: UserObject): AxiosRequestConfig | undefine
   };
 
   return header;
+}
+
+export function getFallbackThemeName(value: number): ThemeValue {
+  //because more number of user use darktheme in vs code
+  //https://css-tricks.com/poll-results-light-on-dark-is-preferred/
+  if (!value) { return 'atom-one-dark'; }
+
+  if (value === 2) {
+    return 'atom-one-dark';
+  }
+  return 'atom-one-light';
 }

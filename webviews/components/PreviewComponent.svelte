@@ -5,7 +5,6 @@
   import Skeleton from './Skeleton.svelte';
   import CodeContainer from './CodeContainer.svelte';
   import { constKeys, webAppURL } from './common/constants';
-
   let isLoading = true;
   export let item: GistFileType;
 

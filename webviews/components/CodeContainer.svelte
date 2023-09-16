@@ -10,11 +10,41 @@
   export let handleCompressClick: () => void;
 
   import atomOneDark from 'svelte-highlight/styles/atom-one-dark';
+  import lightfair from 'svelte-highlight/styles/lightfair';
+
   import { HighlightAuto } from 'svelte-highlight';
+  import { type ThemeValue, theme } from '../types';
+  import { afterUpdate, onMount } from 'svelte';
+  import { constKeys } from './common/constants';
+  import { getFallbackThemeName } from './utils/editor_utils';
+
+  let currentTheme: ThemeValue = 'atom-one-dark';
+
+  onMount(async () => {
+    window.addEventListener('message', async event => {
+      const message = event.data;
+      const { value } = message;
+      console.log('MESSAGE aft', message);
+      switch (message.type) {
+        case constKeys.onThemeChange:
+          const rv = getFallbackThemeName(value);
+          console.log('RV', rv);
+          theme.update(rv => rv);
+          currentTheme = rv;
+          break;
+      }
+    }),
+      vscodeChannel.postMessage({ type: constKeys.onThemeChange, value: undefined });
+  });
+
+  afterUpdate(() => {
+    vscodeChannel.postMessage({ type: constKeys.onThemeChange, value: undefined });
+  });
 </script>
 
 <svelte:head>
-  {@html atomOneDark}
+  {@html currentTheme === 'atom-one-light' ? lightfair : atomOneDark}
+  {$theme}
 </svelte:head>
 
 <div class="code-container">
