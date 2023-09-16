@@ -46,7 +46,7 @@ Contributions to the Zist VS Code extension are always welcome! Whether you want
 
 ## Support
 
-For support or questions, please [open an issue](https://github.com/yourusername/zist-vscode-extension/issues) on GitHub or reach out to us at [millanpoudel1@gmail.com](mailto:mukunpoudel1@gmail.com).
+For support or questions, please [open an issue](https://github.com/vortexnet/zist-vscode/issues/new) on GitHub or reach out to us at [millanpoudel1@gmail.com](mailto:millanpoudel1@gmail.com).
 
 ## License
 
