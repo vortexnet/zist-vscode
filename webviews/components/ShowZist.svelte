@@ -10,13 +10,15 @@
   import type { AxiosRequestConfig, AxiosResponse } from 'axios';
   import axios from 'axios';
   import UnAuthenticated from './UnAuthenticated.svelte';
+  import NoGistAvailable from './NoGistAvailable.svelte';
 
   let userObject: UserObject | null = null;
   let gists = writable<GistFileType[]>([]);
-  let isAuthenticated: boolean = true;
+  let isAuthenticated = true;
   let limitReached = false;
   let isLoading = false;
   let page = 1;
+  let empty = true;
 
   async function fetchData() {
     const headers: AxiosRequestConfig | undefined = getHeader(userObject!);
@@ -35,6 +37,9 @@
 
         if (jsonData.length === 0) {
           limitReached = true;
+        }
+        if (page === 1 && jsonData.length === 0) {
+          empty = true;
         }
 
         gists.update(existingGists => [...existingGists, ...sanitizedGists]);
@@ -92,6 +97,10 @@
   {:else if !isAuthenticated && !isLoading}
     <div>
       <UnAuthenticated {isAuthenticated} {updateAuthenticationStatus} />
+    </div>
+  {:else if isAuthenticated && empty && !isLoading}
+    <div>
+      <NoGistAvailable />
     </div>
   {:else}
     <ul>
