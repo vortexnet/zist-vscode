@@ -24,11 +24,9 @@
     window.addEventListener('message', async event => {
       const message = event.data;
       const { value } = message;
-      console.log('MESSAGE aft', message);
       switch (message.type) {
         case constKeys.onThemeChange:
           const rv = getFallbackThemeName(value);
-          console.log('RV', rv);
           theme.update(rv => rv);
           currentTheme = rv;
           break;
