@@ -1,7 +1,6 @@
 <script lang="ts">
   import { onMount, afterUpdate } from 'svelte';
   import { writable } from 'svelte/store';
-
   import PreviewComponent from './PreviewComponent.svelte';
   import type { GistFileType, UserObject } from '../types';
   import { debounce, getFiles, getHeader } from './utils/editor_utils';

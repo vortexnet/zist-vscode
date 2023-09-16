@@ -1,5 +1,8 @@
 
 /* eslint-disable @typescript-eslint/naming-convention */
+
+import { writable, type Writable } from 'svelte/store';
+
 export type Files = {
   [filename: string]: GistFileType;
 };
@@ -91,3 +94,7 @@ export type UserObject = {
   name: string;
   scopes: [string],
 };
+
+export type ThemeValue = 'atom-one-dark' | 'atom-one-light';
+
+export const theme: Writable<ThemeValue> = writable('atom-one-dark');
