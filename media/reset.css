@@ -31,7 +31,7 @@ html {
 
 .code-box {
   min-height: 160px;
-  border: 1px solid #dbe7d8;
+  border: 1px solid var(--vscode-textBlockQuote-border);
   border-radius: 4px;
   margin: 3px;
   overflow: hidden;
@@ -172,6 +172,8 @@ button {
     gap: 1rem;
     padding: 1rem;
     text-align: center;
+    border-radius: 4px;
+    border: 1px solid var(--vscode-textBlockQuote-border);
 }
 .unauthenticated_header{
   padding-bottom: 1rem;
@@ -200,7 +202,8 @@ button {
 .no-gists {
   font-family: Arial, sans-serif; /* Use your preferred font-family here */
   padding: 1rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Box shadow for a subtle elevation effect */
+  border-radius: 4px;
+  border: 1px solid var(--vscode-textBlockQuote-border);
 }
 
 .header {

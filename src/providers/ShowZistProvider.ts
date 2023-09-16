@@ -2,22 +2,27 @@ import * as vscode from 'vscode';
 import { UserManager, UserObject } from '../GlobalStateManager';
 import { apiBaseUrl, constKeys, constType } from '../common/constants';
 import { getNonce } from '../common/getNonce';
-import { authorize } from '../oAuth/authorize';
 
 export class ShowZistProvider implements vscode.WebviewViewProvider {
   public static readonly viewType = 'zist-vscode.sidebar-accordian-list';
   _view?: vscode.WebviewView;
   _doc?: vscode.TextDocument;
 
-  constructor(private readonly _extensionUri: vscode.Uri) {}
+  constructor(private readonly _extensionUri: vscode.Uri) {
+    vscode.commands.registerCommand('zist-vscode.sidebar-accordian-list-sync', () => {
+      if (this._view) {
+        const webview = this._view.webview;
+        webview.html = this._getHtmlForWebview(webview);
+      }
+    });
+  }
+
 
   public resolveWebviewView(webviewView: vscode.WebviewView) {
     this._view = webviewView;
 
     webviewView.webview.options = {
-      // Allow scripts in the webview
       enableScripts: true,
-
       localResourceRoots: [this._extensionUri],
     };
 
@@ -27,7 +32,6 @@ export class ShowZistProvider implements vscode.WebviewViewProvider {
       switch (data.type) {
         case constKeys.onAuthenticate: {
           const user = UserManager.getUserObject() as UserObject;
-          console.log('user', user);
           if (!user.accessToken) {
             vscode.commands.executeCommand('zist-vscode.authenticate').then(() => {
               webviewView.webview.postMessage({
@@ -73,6 +77,7 @@ export class ShowZistProvider implements vscode.WebviewViewProvider {
           vscode.env.openExternal(vscode.Uri.parse(data.value));
           break;
         }
+
         case constKeys.unAuthenticate: {
           UserManager.setUserObject({});
           webviewView.webview.postMessage({
@@ -107,9 +112,8 @@ export class ShowZistProvider implements vscode.WebviewViewProvider {
 					Use a content security policy to only allow loading images from https or from our extension directory,
 					and only allow scripts that have a specific nonce.
         -->
-        <meta http-equiv="Content-Security-Policy" content="img-src https: data:; style-src 'unsafe-inline' ${
-          webview.cspSource
-        }; script-src 'nonce-${nonce}';">
+        <meta http-equiv="Content-Security-Policy" content="img-src https: data:; style-src 'unsafe-inline' ${webview.cspSource
+      }; script-src 'nonce-${nonce}';">
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
 				<link href="${styleResetUri}" rel="stylesheet">
 				<link href="${styleVSCodeUri}" rel="stylesheet">

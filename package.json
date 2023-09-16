@@ -34,11 +34,6 @@
         },
         {
           "type": "webview",
-          "id": "zist-vscode.sidebar-accordian-create",
-          "name": "Create"
-        },
-        {
-          "type": "webview",
           "id": "zist-vscode.sidebar-accordian-about",
           "name": "About"
         }
@@ -47,17 +42,12 @@
     "menus": {
       "view/title": [
         {
-          "command": "zist-vscode.sidebar-accordian-list",
+          "command": "zist-vscode.sidebar-accordian-list-sync",
           "group": "navigation",
           "when": "view == zist-vscode.sidebar-accordian-list"
         },
         {
-          "command": "zist-vscode.sidebar-accordian-create",
-          "group": "navigation",
-          "when": "view == zist-vscode.sidebar-accordian-create"
-        },
-        {
-          "command": "zist-vscode.sidebar-accordian-about",
+          "command": "zist-vscode.sidebar-accordian-about-external",
           "group": "navigation",
           "when": "view == zist-vscode.sidebar-accordian-about"
         }
@@ -80,19 +70,13 @@
         "category": "Zist"
       },
       {
-        "command": "zist-vscode.sidebar-accordian-create",
-        "title": "Expand",
-        "category": "Zist",
-        "icon": "$(screen-full)"
-      },
-      {
-        "command": "zist-vscode.sidebar-accordian-list",
+        "command": "zist-vscode.sidebar-accordian-list-sync",
         "title": "Sync",
         "category": "Zist",
         "icon": "$(sync)"
       },
       {
-        "command": "zist-vscode.sidebar-accordian-about",
+        "command": "zist-vscode.sidebar-accordian-about-external",
         "title": "About",
         "category": "Zist",
         "icon": "$(link-external)"

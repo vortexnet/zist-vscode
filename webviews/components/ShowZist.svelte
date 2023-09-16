@@ -14,11 +14,11 @@
 
   let userObject: UserObject | null = null;
   let gists = writable<GistFileType[]>([]);
-  let isAuthenticated = true;
+  let isAuthenticated = false;
   let limitReached = false;
   let isLoading = false;
   let page = 1;
-  let empty = true;
+  let empty = false;
 
   async function fetchData() {
     const headers: AxiosRequestConfig | undefined = getHeader(userObject!);
@@ -108,6 +108,6 @@
         <PreviewComponent {item} />
       {/each}
     </ul>
+    <div class="ratelimit-hit" />
   {/if}
-  <div class="ratelimit-hit" />
 </div>
