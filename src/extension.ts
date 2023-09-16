@@ -45,10 +45,14 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(initializeStatusBarAndSelectionHandler());
 
-  context.subscriptions.push(vscode.commands.registerCommand('zist-vscode.quickpick-input', async () => { activeTextEditorReference(sharedPayload); }));
+  context.subscriptions.push(
+    vscode.commands.registerCommand('zist-vscode.quickpick-input', async () => {
+      activeTextEditorReference(sharedPayload);
+    }),
+  );
 
   const disposable = vscode.commands.registerCommand('zist-vscode.helloWorld', () => {
-    vscode.window.showInformationMessage(`Hello World!,`,);
+    vscode.window.showInformationMessage(`Hello World!,`);
   });
 
   // authentication with github
@@ -57,4 +61,4 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(disposable);
 }
 
-export function deactivate() { }
+export function deactivate() {}

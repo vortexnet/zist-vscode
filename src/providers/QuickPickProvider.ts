@@ -5,202 +5,202 @@ import { gistsEndPoint } from '../common/constants';
 import { UserManager } from '../GlobalStateManager';
 
 interface FileVisibility {
-    label: string;
-    description: string;
+  label: string;
+  description: string;
 }
 
 type ConstructPayloadTypes = {
-    fileName: string;
-    description: string;
-    isPublic: boolean;
-    language: string,
-    content: string,
+  fileName: string;
+  description: string;
+  isPublic: boolean;
+  language: string;
+  content: string;
 };
 
 type ConstructPayloadReturnType = {
-    description: string;
-    public: boolean;
-    files: {
-        [filename: string]: {
-            content: string;
-            language: string;
-        }
+  description: string;
+  public: boolean;
+  files: {
+    [filename: string]: {
+      content: string;
+      language: string;
     };
+  };
 };
 
 type ConstructedInputType = {
-    fileName: string;
-    language: string;
-    content: string,
+  fileName: string;
+  language: string;
+  content: string;
 };
 
 type UserObject = {
-    accessToken: string;
-    name: string;
-    scopes: [string],
+  accessToken: string;
+  name: string;
+  scopes: [string];
 };
 
 type SharedPayloadType = {
-    fileName: string;
-    content: string;
-    language: string;
-    description: string;
-    isPublic: boolean;
+  fileName: string;
+  content: string;
+  language: string;
+  description: string;
+  isPublic: boolean;
 };
 
 const sharedPayload: SharedPayloadType = {
-    fileName: '',
-    content: '',
-    language: 'text',
-    isPublic: true,
-    description: '',
+  fileName: '',
+  content: '',
+  language: 'text',
+  isPublic: true,
+  description: '',
 };
 
 export function getHeader(): AxiosRequestConfig | undefined {
-    const userObject = UserManager.getUserObject() as UserObject;
-    if (!userObject) {
-        return undefined;
-    }
-    const token = userObject.accessToken;
-    const header: AxiosRequestConfig = {
-        headers: {
-            'Accept': 'application/vnd.github+json',
-            'Authorization': `Bearer ${token}`,
-            'X-GitHub-Api-Version': '2022-11-28'
-        }
-    };
+  const userObject = UserManager.getUserObject() as UserObject;
+  if (!userObject) {
+    return undefined;
+  }
+  const token = userObject.accessToken;
+  const header: AxiosRequestConfig = {
+    headers: {
+      Accept: 'application/vnd.github+json',
+      Authorization: `Bearer ${token}`,
+      'X-GitHub-Api-Version': '2022-11-28',
+    },
+  };
 
-    return header;
+  return header;
 }
 
-
 export function constructPayload(params: ConstructPayloadTypes): ConstructPayloadReturnType {
-    const { fileName, description, content, isPublic, language } = params;
+  const { fileName, description, content, isPublic, language } = params;
 
-    const payload = {
-        description: description,
-        public: isPublic,
-        files: {
-            [fileName]: {
-                content: content,
-                language: language,
-            }
-        }
-    };
-    return payload;
-
+  const payload = {
+    description: description,
+    public: isPublic,
+    files: {
+      [fileName]: {
+        content: content,
+        language: language,
+      },
+    },
+  };
+  return payload;
 }
 
 export async function saveSnippet(params: ConstructPayloadTypes): Promise<string> {
-    const payload = constructPayload(params);
-    const header = getHeader();
-    if (!header) {
-        throw new Error('Missing authorization header');
+  const payload = constructPayload(params);
+  const header = getHeader();
+  if (!header) {
+    throw new Error('Missing authorization header');
+  }
+
+  console.log('payload and header', payload, header);
+
+  try {
+    const response: AxiosResponse = await axios.post('https://api.github.com/gists', payload, {
+      headers: header.headers,
+    });
+    console.log('res', response);
+
+    if (response.status === 200) {
+      // Handle the API response data as needed
+      // For example, you can access response.data to get the data returned by the API
+      return 'API call successful';
+    } else {
+      return 'API call failed';
     }
-
-    console.log('payload and header', payload, header);
-
-    try {
-        const response: AxiosResponse = await axios.post('https://api.github.com/gists', payload, {
-            headers: header.headers,
-        });
-        console.log('res', response);
-
-        if (response.status === 200) {
-            // Handle the API response data as needed
-            // For example, you can access response.data to get the data returned by the API
-            return 'API call successful';
-        } else {
-            return 'API call failed';
-        }
-    } catch (error) {
-        console.log('ERROR rn', error);
-        if (error instanceof Error) {
-            return `API call error: ${error.message}`;
-        } else {
-            return 'An unknown error occurred';
-        }
+  } catch (error) {
+    console.log('ERROR rn', error);
+    if (error instanceof Error) {
+      return `API call error: ${error.message}`;
+    } else {
+      return 'An unknown error occurred';
     }
+  }
 }
 
 export async function activeTextEditorReference(sharedPayload: SharedPayloadType) {
-    const { activeTextEditor } = vscode.window;
-    const file = activeTextEditor ? activeTextEditor.document.fileName : 'random.ts';
-    const language = activeTextEditor ? activeTextEditor.document.languageId : 'text';
+  const { activeTextEditor } = vscode.window;
+  const file = activeTextEditor ? activeTextEditor.document.fileName : 'random.ts';
+  const language = activeTextEditor ? activeTextEditor.document.languageId : 'text';
 
-    const lastIndex = file.lastIndexOf('\\');
-    const fileName = lastIndex !== -1 ? file.substring(lastIndex + 1) : file;
+  const lastIndex = file.lastIndexOf('\\');
+  const fileName = lastIndex !== -1 ? file.substring(lastIndex + 1) : file;
 
-    if (!activeTextEditor) {
-        vscode.window.showInformationMessage('No active text editor');
-    }
+  if (!activeTextEditor) {
+    vscode.window.showInformationMessage('No active text editor');
+  }
 
-    const text = activeTextEditor?.document.getText(activeTextEditor.selection);
-    if (text) {
-        vscode.window.showInformationMessage('Text: ' + text);
-    }
+  const text = activeTextEditor?.document.getText(activeTextEditor.selection);
+  if (text) {
+    vscode.window.showInformationMessage('Text: ' + text);
+  }
 
-    sharedPayload.fileName = fileName;
-    sharedPayload.language = language;
-    sharedPayload.content = text || '';
+  sharedPayload.fileName = fileName;
+  sharedPayload.language = language;
+  sharedPayload.content = text || '';
 
-    await showFileInputForm(sharedPayload);
-
+  await showFileInputForm(sharedPayload);
 }
 
+export async function showFileInputForm(
+  params: SharedPayloadType,
+): Promise<{ finalFileName: string; isPrivate: boolean; description: string | undefined } | undefined> {
+  const { fileName, content, language } = params;
 
-export async function showFileInputForm(params: SharedPayloadType): Promise<{ finalFileName: string, isPrivate: boolean, description: string | undefined } | undefined> {
+  const defaultFileName = fileName || '';
 
-    const { fileName, content, language } = params;
+  const description = await vscode.window.showInputBox({
+    prompt: 'Enter a description',
+    placeHolder: 'e.g., this snippet is about ...',
+    value: '',
+  });
 
-    const defaultFileName = fileName || '';
+  const userInputFileName = await vscode.window.showInputBox({
+    prompt: 'Enter a file name',
+    placeHolder: 'e.g., my-file.txt',
+    value: defaultFileName,
+    validateInput: value => {
+      if (!value) {
+        return 'File name is required';
+      }
+      return '';
+    },
+  });
 
-    const description = await vscode.window.showInputBox({
-        prompt: 'Enter a description',
-        placeHolder: 'e.g., this snippet is about ...',
-        value: '',
-    });
+  const visibilityOptions: FileVisibility[] = [
+    { label: '🔒 Private', description: 'This file will be private' },
+    { label: '🌐 Public', description: 'This file will be public (default)' },
+  ];
 
-    const userInputFileName = await vscode.window.showInputBox({
-        prompt: 'Enter a file name',
-        placeHolder: 'e.g., my-file.txt',
-        value: defaultFileName,
-        validateInput: (value) => {
-            if (!value) {
-                return 'File name is required';
-            }
-            return '';
-        },
-    });
+  const selectedVisibility = await vscode.window.showQuickPick(visibilityOptions, {
+    placeHolder: 'Select the file visibility',
+  });
 
-    const visibilityOptions: FileVisibility[] = [
-        { label: '🔒 Private', description: 'This file will be private' },
-        { label: '🌐 Public', description: 'This file will be public (default)' }
-    ];
+  if (selectedVisibility === undefined) {
+    return undefined;
+  }
 
-    const selectedVisibility = await vscode.window.showQuickPick(visibilityOptions, {
-        placeHolder: 'Select the file visibility',
-    });
+  const isPublic = !selectedVisibility.label.includes('🔒 Private');
+  const finalFileName = userInputFileName || fileName;
 
-    if (selectedVisibility === undefined) {
-        return undefined;
-    }
+  const loadingPromise = vscode.window.withProgress(
+    {
+      location: vscode.ProgressLocation.Notification,
+      title: 'Saving your snippet...',
+      cancellable: false,
+    },
+    async progress => {
+      const apiResponse = await saveSnippet({ fileName: finalFileName, isPublic, description, language, content } as ConstructPayloadTypes);
+      console.log('RESPONSE', apiResponse);
 
-    const isPublic = !selectedVisibility.label.includes('🔒 Private');
-    const finalFileName = userInputFileName || fileName;
+      vscode.window.showInformationMessage(apiResponse);
+    },
+  );
 
-    const loadingPromise = vscode.window.withProgress({
-        location: vscode.ProgressLocation.Notification,
-        title: 'Saving your snippet...',
-        cancellable: false,
-    }, async (progress) => {
-        const apiResponse = await saveSnippet({ fileName: finalFileName, isPublic, description, language, content } as ConstructPayloadTypes);
-        console.log('RESPONSE', apiResponse);
+  await loadingPromise;
 
-        vscode.window.showInformationMessage(apiResponse);
-    });
-
-    await loadingPromise;
-
-    return { description, finalFileName, isPrivate: !isPublic };
+  return { description, finalFileName, isPrivate: !isPublic };
 }
