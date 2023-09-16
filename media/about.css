@@ -6,8 +6,9 @@
     flex-direction: column;
     background-color: var(--vscode-editor-background);
     padding: 0 var(--container-paddding);
-    border-radius: 8px;
+    border-radius: 4px;
     box-shadow: var(--vscode-widget-shadow);
+      border: 1px solid var(--vscode-textBlockQuote-border);
   }
   
   /* Styling for the icon */
