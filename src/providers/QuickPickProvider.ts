@@ -3,6 +3,7 @@ import * as vscode from 'vscode';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { UserManager } from '../GlobalStateManager';
 const path = require('path');
+
 interface FileVisibility {
   label: string;
   description: string;
@@ -27,7 +28,6 @@ type ConstructPayloadReturnType = {
   };
 };
 
-
 type UserObject = {
   accessToken: string;
   name: string;
@@ -41,7 +41,6 @@ type SharedPayloadType = {
   description: string;
   isPublic: boolean;
 };
-
 
 export function getHeader(): AxiosRequestConfig | undefined {
   const userObject = UserManager.getUserObject() as UserObject;
