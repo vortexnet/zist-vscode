@@ -6,28 +6,7 @@ on:
       - master
 
 jobs:
-  bump-version:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 14
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Bump version and create release
-        run: |
-          npm version patch 
-          git push --follow-tags
-
-  publish:
-    needs: bump-version
+  build:
     runs-on: ubuntu-latest
 
     steps:
