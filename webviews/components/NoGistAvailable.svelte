@@ -1,3 +1,6 @@
+<script lang="ts">
+</script>
+
 <div class="no-gists">
   <b><h2 class="header">Ohh...</h2></b>
 
