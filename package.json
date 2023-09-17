@@ -88,11 +88,6 @@
     },
     "commands": [
       {
-        "command": "zist-vscode.helloWorld",
-        "title": "Hello World",
-        "category": "Zist"
-      },
-      {
         "command": "zist-vscode.authenticate",
         "title": "Authenticate",
         "category": "Zist"

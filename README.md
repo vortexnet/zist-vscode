@@ -62,6 +62,3 @@ For support/feedback,
 ## Contributing
 
 Contributions are always welcome!
-
-See `contributing.md` for ways to get started.
-
