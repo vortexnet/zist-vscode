@@ -15,6 +15,10 @@
     "onView:file"
   ],
   "main": "./dist/extension.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vortexnet/zist-vscode"
+  },
   "contributes": {
     "viewsContainers": {
       "activitybar": [
