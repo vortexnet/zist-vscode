@@ -7,11 +7,11 @@ export type UserObject = {
   name: string;
   scopes: [string];
   authenticated: boolean;
-};
+} | null;
 export class UserManager {
   static globalState: vscode.Memento;
 
-  static setUserObject(userObject: Object) {
+  static setUserObject(userObject: Object | null) {
     return this.globalState.update(KEY, userObject);
   }
 

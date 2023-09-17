@@ -43,18 +43,18 @@ export class ShowZistProvider implements vscode.WebviewViewProvider {
       switch (data.type) {
         case constKeys.onAuthenticate: {
           const user = UserManager.getUserObject() as UserObject;
-          if (!user.accessToken) {
+          if (!user) {
             vscode.commands.executeCommand('zist-vscode.authenticate').then(() => {
               webviewView.webview.postMessage({
                 type: constKeys.authenticated,
                 value: UserManager.getUserObject(),
               });
+              webviewView.webview.postMessage({
+                type: constType.token,
+                value: UserManager.getUserObject(),
+              });
             });
           }
-          webviewView.webview.postMessage({
-            type: constType.token,
-            value: UserManager.getUserObject(),
-          });
           break;
         }
 
@@ -90,7 +90,7 @@ export class ShowZistProvider implements vscode.WebviewViewProvider {
         }
 
         case constKeys.unAuthenticate: {
-          UserManager.setUserObject({});
+          UserManager.setUserObject(null);
           webviewView.webview.postMessage({
             type: constKeys.unAuthenticate,
             value: UserManager.getUserObject(),
@@ -130,9 +130,10 @@ export class ShowZistProvider implements vscode.WebviewViewProvider {
 					Use a content security policy to only allow loading images from https or from our extension directory,
 					and only allow scripts that have a specific nonce.
         -->
-        <meta http-equiv="Content-Security-Policy" content="img-src https: data:; style-src 'unsafe-inline' ${
-          webview.cspSource
-        }; script-src 'nonce-${nonce}';">
+        <meta 
+        http-equiv="Content-Security-Policy" 
+        content="img-src https: data:; 
+        style-src 'unsafe-inline' ${webview.cspSource}; script-src 'nonce-${nonce}';">
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
 				<link href="${styleResetUri}" rel="stylesheet">
 				<link href="${styleVSCodeUri}" rel="stylesheet">
