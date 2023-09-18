@@ -19,6 +19,7 @@
           } else {
             isAuthenticated = true;
             updateAuthenticationStatus(true);
+            vscodeChannel.postMessage({ type: constKeys.getUser, value: userObject });
           }
           break;
         case constKeys.unAuthenticate:
