@@ -131,7 +131,7 @@
     "format": "prettier \"src/**/*.{js,jsx,ts,tsx,css,scss}\" --write",
     "release": "standard-version",
     "release-changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
-    "postrelease": "npm run release-changelog && git add CHANGELOG.md && git commit -m 'chore(release): update changelog' && git push origin master"
+    "postrelease": "npm run release-changelog && git add CHANGELOG.md && git commit -m 'chore(release): update changelog' && git push origin develop"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.1.0",
