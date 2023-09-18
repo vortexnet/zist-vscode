@@ -84,10 +84,6 @@ export class ShowZistProvider implements vscode.WebviewViewProvider {
 
         case constKeys.unAuthenticate: {
           UserManager.setUserObject(null);
-          webviewView.webview.postMessage({
-            type: constKeys.unAuthenticate,
-            value: UserManager.getUserObject(),
-          });
         }
 
         case constKeys.onThemeChange: {
