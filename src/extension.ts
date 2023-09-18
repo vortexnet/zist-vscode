@@ -4,7 +4,7 @@ import { ShowZistProvider } from './providers/ShowZistProvider';
 import { CreateZistProvider } from './providers/CreateZistProvider';
 import { AboutZistProvider } from './providers/AboutZistProvider';
 import { UserManager } from './GlobalStateManager';
-import { activeTextEditorReference, showFileInputForm } from './providers/QuickPickProvider';
+import { activeTextEditorReference } from './providers/QuickPickProvider';
 import { initializeStatusBarAndSelectionHandler } from './providers/updateStatusBarVisibility';
 
 type SharedPayloadType = {
@@ -32,10 +32,6 @@ export function activate(context: vscode.ExtensionContext) {
   const createProvider = new CreateZistProvider(context.extensionUri);
   const aboutProvider = new AboutZistProvider(context.extensionUri);
 
-  // theme config
-  const config = vscode.workspace.getConfiguration('workbench');
-  const themeName = config.get('colorTheme');
-
   context.subscriptions.push(vscode.window.registerWebviewViewProvider(ShowZistProvider.viewType, showProvider));
 
   context.subscriptions.push(vscode.window.registerWebviewViewProvider(CreateZistProvider.viewType, createProvider));
@@ -45,19 +41,12 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(initializeStatusBarAndSelectionHandler());
 
   context.subscriptions.push(
-    vscode.commands.registerCommand('zist-vscode.expolorer-quickpick-input', async () => {
+    vscode.commands.registerCommand('zist-vscode.explorer-quickpick-input', async () => {
       activeTextEditorReference(sharedPayload);
     }),
   );
 
-  const disposable = vscode.commands.registerCommand('zist-vscode.helloWorld', () => {
-    vscode.window.showInformationMessage(`Hello World!,`);
-  });
-
-  // authentication with github
   context.subscriptions.push(vscode.commands.registerCommand('zist-vscode.authenticate', authorize));
-
-  context.subscriptions.push(disposable);
 }
 
 export function deactivate() {}

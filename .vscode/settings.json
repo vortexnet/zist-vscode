@@ -11,5 +11,11 @@
       "source.fixAll.eslint": true
     },
     "typescript.tsc.autoDetect": "off",
-    "editor.formatOnSave": true      
+    "editor.formatOnSave": true,
+    "cSpell.words": [
+        "Mukun",
+        "Poudel",
+        "Srinivas",
+        "zist"
+    ]
 }

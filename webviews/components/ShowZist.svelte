@@ -13,7 +13,7 @@
 
   let userObject: UserObject | null = null;
   let gists = writable<GistFileType[]>([]);
-  let isAuthenticated = true;
+  let isAuthenticated = false;
   let limitReached = false;
   let isLoading = false;
   let page = 1;

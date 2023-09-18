@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import * as vscode from 'vscode';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { gistsEndPoint } from '../common/constants';
 import { UserManager } from '../GlobalStateManager';
+const path = require('path');
 
 interface FileVisibility {
   label: string;
@@ -28,12 +28,6 @@ type ConstructPayloadReturnType = {
   };
 };
 
-type ConstructedInputType = {
-  fileName: string;
-  language: string;
-  content: string;
-};
-
 type UserObject = {
   accessToken: string;
   name: string;
@@ -46,14 +40,6 @@ type SharedPayloadType = {
   language: string;
   description: string;
   isPublic: boolean;
-};
-
-const sharedPayload: SharedPayloadType = {
-  fileName: '',
-  content: '',
-  language: 'text',
-  isPublic: true,
-  description: '',
 };
 
 export function getHeader(): AxiosRequestConfig | undefined {
@@ -121,10 +107,7 @@ export async function activeTextEditorReference(sharedPayload: SharedPayloadType
   const { activeTextEditor } = vscode.window;
   const file = activeTextEditor ? activeTextEditor.document.fileName : 'random.ts';
   const language = activeTextEditor ? activeTextEditor.document.languageId : 'text';
-
-  const lastIndex = file.lastIndexOf('\\');
-  const fileName = lastIndex !== -1 ? file.substring(lastIndex + 1) : file;
-
+  const fileName = path.basename(file);
   if (!activeTextEditor) {
     vscode.window.showInformationMessage('No active text editor');
   }
@@ -186,7 +169,6 @@ export async function showFileInputForm(
     },
     async progress => {
       const apiResponse = await saveSnippet({ fileName: finalFileName, isPublic, description, language, content } as ConstructPayloadTypes);
-      vscode.window.showInformationMessage(apiResponse);
     },
   );
 

@@ -14,7 +14,9 @@
     <li>Create gists from extension</li>
     <div class="about-resources">
       <b>Resources</b>
-      <!-- <a>Marketplace</a> -->
+      <li>
+        <a href="https://marketplace.visualstudio.com/items?itemName=Mukun.zist-vscode">Marketplace</a>
+      </li>
       <li>
         <a href="https://github.com/vortexnet/zist-vscode">GitHub</a>
       </li>
