@@ -42,19 +42,12 @@ export class ShowZistProvider implements vscode.WebviewViewProvider {
     webviewView.webview.onDidReceiveMessage(async data => {
       switch (data.type) {
         case constKeys.onAuthenticate: {
-          const user = UserManager.getUserObject() as UserObject;
-          if (!user) {
-            vscode.commands.executeCommand('zist-vscode.authenticate').then(() => {
-              webviewView.webview.postMessage({
-                type: constKeys.authenticated,
-                value: UserManager.getUserObject(),
-              });
-              webviewView.webview.postMessage({
-                type: constType.token,
-                value: UserManager.getUserObject(),
-              });
+          vscode.commands.executeCommand('zist-vscode.authenticate').then(() => {
+            webviewView.webview.postMessage({
+              type: constKeys.authenticated,
+              value: UserManager.getUserObject(),
             });
-          }
+          });
           break;
         }
 

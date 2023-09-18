@@ -42,7 +42,7 @@ Optimize your coding workflow with the Zist VS Code extension, a revolutionary c
 
 ## Support
 
-For support or questions, please [open an issue](https://github.com/vortexnet/zist-vscode/issues/new) on GitHub or reach out to us at [millanpoudel1@gmail.com](mailto:millanpoudel1@gmail.com).
+For support or questions, please [open an issue](https://github.com/vortexnet/zist-vscode/issues/new) on GitHub or reach out at [millanpoudel1@gmail.com](mailto:millanpoudel1@gmail.com).
 
 ## License
 
