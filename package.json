@@ -4,7 +4,7 @@
   "icon": "media/logo.png",
   "description": "Manage your github gist using Zist",
   "version": "0.0.6",
-  "publisher": "Mukun",
+  "publisher": "mukun",
   "engines": {
     "vscode": "^1.80.0"
   },
