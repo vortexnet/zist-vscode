@@ -27,7 +27,9 @@
     "onCommand:zist.sidebar-accordian-list",
     "onView:explorer",
     "onView:file",
-    "onView:zist-activitybar"
+    "onStartupFinished",
+    "onDidChangeTextEditorSelection",
+    "onDidChangeActiveTextEditor"
   ],
   "main": "./dist/extension.js",
   "repository": {
@@ -55,20 +57,6 @@
           "type": "webview",
           "id": "zist.sidebar-accordian-about",
           "name": "About"
-        }
-      ],
-      "explorer": [
-        {
-          "id": "zist-explorer-view",
-          "name": "Zist Explorer",
-          "command": "zist.explorer-quickpick-input"
-        }
-      ],
-      "debug": [
-        {
-          "id": "zist-debug-view",
-          "name": "Zist Explorer",
-          "command": "zist.explorer-quickpick-input"
         }
       ]
     },
