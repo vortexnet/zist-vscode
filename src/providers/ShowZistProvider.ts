@@ -4,12 +4,12 @@ import { apiBaseUrl, constKeys, constType } from '../common/constants';
 import { getNonce } from '../common/getNonce';
 
 export class ShowZistProvider implements vscode.WebviewViewProvider {
-  public static readonly viewType = 'zist-vscode.sidebar-accordian-list';
+  public static readonly viewType = 'zist.sidebar-accordian-list';
   _view?: vscode.WebviewView;
   _doc?: vscode.TextDocument;
 
   constructor(private readonly _extensionUri: vscode.Uri) {
-    vscode.commands.registerCommand('zist-vscode.sidebar-accordian-list-sync', () => {
+    vscode.commands.registerCommand('zist.sidebar-accordian-list-sync', () => {
       if (this._view) {
         const webview = this._view.webview;
         webview.html = this._getHtmlForWebview(webview);
@@ -42,7 +42,7 @@ export class ShowZistProvider implements vscode.WebviewViewProvider {
     webviewView.webview.onDidReceiveMessage(async data => {
       switch (data.type) {
         case constKeys.onAuthenticate: {
-          vscode.commands.executeCommand('zist-vscode.authenticate').then(() => {
+          vscode.commands.executeCommand('zist.authenticate').then(() => {
             webviewView.webview.postMessage({
               type: constKeys.authenticated,
               value: UserManager.getUserObject(),

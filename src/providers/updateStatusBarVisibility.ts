@@ -7,7 +7,7 @@ let copyButton: vscode.StatusBarItem | undefined;
 export function initializeStatusBarAndSelectionHandler() {
   copyButton = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right);
   copyButton.text = 'Create Zist';
-  copyButton.command = 'zist-vscode.explorer-quickpick-input';
+  copyButton.command = 'zist.explorer-quickpick-input';
   vscode.window.onDidChangeTextEditorSelection(() => {
     const editor = vscode.window.activeTextEditor;
     if (editor && !editor.selection.isEmpty) {

@@ -2,12 +2,12 @@ import * as vscode from 'vscode';
 import { getNonce } from '../common/getNonce';
 
 export class CreateZistProvider implements vscode.WebviewViewProvider {
-  public static readonly viewType = 'zist-vscode.sidebar-accordian-create';
+  public static readonly viewType = 'zist.sidebar-accordian-create';
 
   _view?: vscode.WebviewView;
   _doc?: vscode.TextDocument;
 
-  constructor(private readonly _extensionUri: vscode.Uri) {}
+  constructor(private readonly _extensionUri: vscode.Uri) { }
 
   public resolveWebviewView(webviewView: vscode.WebviewView, context: vscode.WebviewViewResolveContext, _token: vscode.CancellationToken) {
     this._view = webviewView;

@@ -178,6 +178,9 @@ button {
 .unauthenticated_header{
   padding-bottom: 1rem;
 }
+.unauthenticated_note{
+  color: var(--vscode-button-background);
+}
 
 .about-zist{
   text-align: left;

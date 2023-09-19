@@ -41,12 +41,12 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(initializeStatusBarAndSelectionHandler());
 
   context.subscriptions.push(
-    vscode.commands.registerCommand('zist-vscode.explorer-quickpick-input', async () => {
+    vscode.commands.registerCommand('zist.explorer-quickpick-input', async () => {
       activeTextEditorReference(sharedPayload);
     }),
   );
 
-  context.subscriptions.push(vscode.commands.registerCommand('zist-vscode.authenticate', authorize));
+  context.subscriptions.push(vscode.commands.registerCommand('zist.authenticate', authorize));
 }
 
-export function deactivate() {}
+export function deactivate() { }

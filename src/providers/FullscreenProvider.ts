@@ -7,7 +7,7 @@ export class FullscreenProvider {
    */
   public static currentPanel: FullscreenProvider | undefined;
 
-  public static readonly viewType = 'zist-vscode.fullscreen';
+  public static readonly viewType = 'zist.fullscreen';
 
   private readonly _panel: vscode.WebviewPanel;
   private readonly _extensionUri: vscode.Uri;
@@ -24,7 +24,7 @@ export class FullscreenProvider {
     }
 
     // Otherwise, create a new panel.
-    const panel = vscode.window.createWebviewPanel(FullscreenProvider.viewType, 'Zist-Vscode | fullscreen', column || vscode.ViewColumn.One, {
+    const panel = vscode.window.createWebviewPanel(FullscreenProvider.viewType, 'Zist | fullscreen', column || vscode.ViewColumn.One, {
       // Enable javascript in the webview
       enableScripts: true,
 
