@@ -49,4 +49,4 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(vscode.commands.registerCommand('zist.authenticate', authorize));
 }
 
-export function deactivate() { }
+export function deactivate() {}
