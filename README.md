@@ -1,4 +1,4 @@
-# Zist VS Code Extension
+# Zist:
 
 Optimize your coding workflow with the Zist VS Code extension, a revolutionary code snippet manager. Save, organize, and access your code snippets effortlessly within Visual Studio Code. Zist syncs with your GitHub gists, making your snippets available directly in your development environment. Turn coding chaos into clarity with Zist.
 
@@ -7,10 +7,12 @@ Optimize your coding workflow with the Zist VS Code extension, a revolutionary c
 # Creating a Zist snippet
 ![video-list](https://github.com/vortexnet/zist-vscode/assets/23433891/5dd53c69-1c49-4e46-b2e4-48f50a72a3ea)
 
-# Listing and copying
+# Listing
 ![video-create](https://github.com/vortexnet/zist-vscode/assets/23433891/9f8acb8d-6c92-47e7-95f7-19e02a4aea83)
 
-
+# Resources
+![Extension-install-URL](https://marketplace.visualstudio.com/items?itemName=Mukun.zist)
+![Web-App](https://zistapp.xyz/)
 ## Features
 
 
