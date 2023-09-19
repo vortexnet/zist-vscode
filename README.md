@@ -1,4 +1,4 @@
-# Zist:
+# Zist (VS Code Extension)
 
 Optimize your coding workflow with the Zist VS Code extension, a revolutionary code snippet manager. Save, organize, and access your code snippets effortlessly within Visual Studio Code. Zist syncs with your GitHub gists, making your snippets available directly in your development environment. Turn coding chaos into clarity with Zist.
 
