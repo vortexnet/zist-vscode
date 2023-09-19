@@ -11,8 +11,8 @@ Optimize your coding workflow with the Zist VS Code extension, a revolutionary c
 ![video-create](https://github.com/vortexnet/zist-vscode/assets/23433891/9f8acb8d-6c92-47e7-95f7-19e02a4aea83)
 
 # Resources
-[Extension-install-URL](https://marketplace.visualstudio.com/items?itemName=Mukun.zist)
-[Web-App](https://zistapp.xyz/)
+- [Extension-install-URL](https://marketplace.visualstudio.com/items?itemName=Mukun.zist)
+- [Web-App](https://zistapp.xyz/)
 ## Features
 
 
