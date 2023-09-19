@@ -4,6 +4,6 @@
   "recommendations": [
     "dbaeumer.vscode-eslint",
     "amodio.tsl-problem-matcher",
-    "undefined_publisher.zist-vscode"
+    "mukun.zist"
   ]
 }

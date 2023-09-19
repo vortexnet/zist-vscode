@@ -43,5 +43,7 @@
   <button on:click={() => authenticateWithGitHub()}>Authenticate with GitHub</button>
   <!-- <button on:click={() => unAuthenticateWithGitHub()}> UnAuthenticate with GitHub</button> -->
   <h6>*When you authenticate with GitHub you are authenticating VS Code not Zist itself.</h6>
-  <h5>Note: If you are having trouble authenticating, please try `Ctrl + Shift + P` and look for 'Zist Authenticate' command</h5>
+  <h4 class="unauthenticated_note">
+    <b> Note: If you are having trouble authenticating, please try `Ctrl + Shift + P` and look for 'Zist Authenticate' command </b>
+  </h4>
 </main>

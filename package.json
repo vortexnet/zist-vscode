@@ -1,8 +1,8 @@
 {
-  "name": "zist-vscode",
-  "displayName": "Zist-Vscode",
+  "name": "zist",
+  "displayName": "Zist",
   "icon": "media/logo.png",
-  "description": "Manage your github gist using Zist",
+  "description": "Manage your github gist using Zist.",
   "version": "0.0.12",
   "publisher": "Mukun",
   "engines": {
@@ -23,11 +23,11 @@
     "url": "https://twitter.com/PoudelMillan"
   },
   "activationEvents": [
-    "onCommand:zist-vscode.capture-selected-text",
-    "onCommand:zist-vscode.sidebar-accordian-list",
+    "onCommand:zist.capture-selected-text",
+    "onCommand:zist.sidebar-accordian-list",
     "onView:explorer",
     "onView:file",
-    "onView:zist-vscode-activitybar"
+    "onView:zist-activitybar"
   ],
   "main": "./dist/extension.js",
   "repository": {
@@ -38,79 +38,79 @@
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "zist-vscode-activitybar",
+          "id": "zist-activitybar",
           "title": "Zist",
           "icon": "media/snippet.svg"
         }
       ]
     },
     "views": {
-      "zist-vscode-activitybar": [
+      "zist-activitybar": [
         {
           "type": "webview",
-          "id": "zist-vscode.sidebar-accordian-list",
+          "id": "zist.sidebar-accordian-list",
           "name": "Snippets"
         },
         {
           "type": "webview",
-          "id": "zist-vscode.sidebar-accordian-about",
+          "id": "zist.sidebar-accordian-about",
           "name": "About"
         }
       ],
       "explorer": [
         {
-          "id": "zist-vscode-explorer-view",
+          "id": "zist-explorer-view",
           "name": "Zist Explorer",
-          "command": "zist-vscode.explorer-quickpick-input"
+          "command": "zist.explorer-quickpick-input"
         }
       ],
       "debug": [
         {
-          "id": "zist-vscode-debug-view",
+          "id": "zist-debug-view",
           "name": "Zist Explorer",
-          "command": "zist-vscode.explorer-quickpick-input"
+          "command": "zist.explorer-quickpick-input"
         }
       ]
     },
     "menus": {
       "view/title": [
         {
-          "command": "zist-vscode.sidebar-accordian-list-sync",
+          "command": "zist.sidebar-accordian-list-sync",
           "group": "navigation",
-          "when": "view == zist-vscode.sidebar-accordian-list"
+          "when": "view == zist.sidebar-accordian-list"
         },
         {
-          "command": "zist-vscode.sidebar-accordian-about-external",
+          "command": "zist.sidebar-accordian-about-external",
           "group": "navigation",
-          "when": "view == zist-vscode.sidebar-accordian-about"
+          "when": "view == zist.sidebar-accordian-about"
         }
       ]
     },
     "commands": [
       {
-        "command": "zist-vscode.authenticate",
+        "command": "zist.authenticate",
         "title": "Authenticate",
         "category": "Zist"
       },
       {
-        "command": "zist-vscode.fullscreen",
+        "command": "zist.fullscreen",
         "title": "Toggle Fullscreen",
         "category": "Zist"
       },
       {
-        "command": "zist-vscode.sidebar-accordian-list-sync",
+        "command": "zist.sidebar-accordian-list-sync",
         "title": "Sync",
         "category": "Zist",
         "icon": "$(sync)"
       },
       {
-        "command": "zist-vscode.sidebar-accordian-about-external",
+        "command": "zist.sidebar-accordian-about-external",
         "title": "About",
         "category": "Zist",
         "icon": "$(link-external)"
       },
       {
-        "command": "zist-vscode.explorer-quickpick-input",
+        "command": "zist.explorer-quickpick-input",
         "title": "File Name Input",
         "category": "Zist"
       }
