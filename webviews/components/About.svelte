@@ -21,7 +21,7 @@
         <a href="https://github.com/vortexnet/zist-vscode">GitHub</a>
       </li>
       <li>
-        <a href="https://zistapp.xyz/">Web App</a>
+        <a href="https://zist-app.vercel.app/">Web App</a>
       </li>
     </div>
     <div class="about-resources">

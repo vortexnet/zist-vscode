@@ -12,7 +12,7 @@ Optimize your coding workflow with the Zist VS Code extension, a revolutionary c
 
 # Resources
 - [Extension-install-URL](https://marketplace.visualstudio.com/items?itemName=Mukun.zist)
-- [Web-App](https://zistapp.xyz/)
+- [Web-App](https://zist-app.vercel.app/)
 ## Features
 
 
