@@ -11,7 +11,7 @@ export class AboutZistProvider implements vscode.WebviewViewProvider {
   constructor(private readonly _extensionUri: vscode.Uri) {
     vscode.commands.registerCommand('zist.sidebar-accordian-about-external', () => {
       if (this._view) {
-        vscode.env.openExternal(vscode.Uri.parse('https://zistapp.xyz/'));
+        vscode.env.openExternal(vscode.Uri.parse('https://zist-app.vercel.app/'));
       }
     });
   }

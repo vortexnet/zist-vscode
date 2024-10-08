@@ -14,7 +14,7 @@
   <li class="list-item">Check on Private/Personal checkbox based on how you like it</li>
   <li class="list-item">A new gist will be created in your GitHub Gist</li>
 
-  <h4 class="instruction">Or you can create a Zist from our web app <a class="link" href="https://zistapp.xyz/">Zist Webapp</a></h4>
+  <h4 class="instruction">Or you can create a Zist from our web app <a class="link" href="https://zist-app.vercel.app/">Zist Webapp</a></h4>
   <p class="paragraph">
     GitHub also natively provides a way for creating a gist <a class="link" href="https://gist.github.com/">GitHub Gist</a>
   </p>
